@@ -56,7 +56,7 @@ function setup() {
 
   polygon = Bodies.circle(50,200,20)
   World.add(world,polygon)
-  slingShot= new SlingShot(this.polygon{x:100,y:200})
+  slingshot= new SlingShot(this.polygon,{x:100,y:200})
 
 }
 function draw() {
@@ -103,5 +103,23 @@ function draw() {
   dappa8 .display();
   dappa9 .display();
   imageMode(CENTER)
-   image (polygon_img ,polygon.position.x,polygon.position.y,40,40); slingShot.display();
+   image (polygon_img ,polygon.position.x,polygon.position.y,40,40); slingshot.display();
+}
+
+function mouseDragged(){
+  
+      Matter.Body.setPosition(this.polygon, {x: mouseX , y: mouseY});
+  
+}
+
+
+function mouseReleased(){
+  slingshot.fly();
+ 
+}
+
+function keyPressed(){
+  if(keyCode === 32){
+    slingshot.attach(this.polygon);
+  }
 }
